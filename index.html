@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>نظام الموارد البشرية</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow">
+<script src="config.js"></script><script src="vendor/xlsx.full.min.js"></script><script src="vendor/supabase.js"></script>
+<style>
+:root{--bg:#f3f5f9;--card:#fff;--ink:#0f172a;--mut:#64748b;--bd:#e3e8f0;--pri:#2563eb;--th:#eef2f9;--inbg:#fff}
+body.dk{--bg:#0b1220;--card:#131c2e;--ink:#e6ebf5;--mut:#94a3b8;--bd:#25314a;--pri:#60a5fa;--th:#1b2740;--inbg:#0e1627}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink);padding-top:env(safe-area-inset-top)}
+.ic{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vertical-align:-4px;flex:none}
+.bar{background:linear-gradient(120deg,#0f172a,#1e3a8a);color:#fff;padding:12px 16px;display:flex;gap:10px;align-items:center;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #0003}
+.bar h1{font-size:17px;margin:0;flex:1;font-weight:700}.w{max-width:1100px;margin:auto;padding:14px}
+button,select,input,textarea{font:inherit}button{border:0;border-radius:10px;padding:9px 14px;background:var(--pri);color:#fff;cursor:pointer;font-weight:600;display:inline-flex;gap:6px;align-items:center;justify-content:center}button:active{transform:scale(.97)}
+.bar button{background:#ffffff26}input,select,textarea{padding:8px 10px;border:1px solid var(--bd);border-radius:9px;background:var(--inbg);color:var(--ink);max-width:100%}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 1px 3px #0f172a0d}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.nt{flex-direction:column;gap:8px;background:var(--card);color:var(--ink);border:1px solid var(--bd);border-radius:14px;padding:16px 8px;box-shadow:0 1px 3px #0f172a0d}
+.ni{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:#e8eefc;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c)}.ni .ic{width:25px;height:25px}
+.tile{background:var(--card);border-radius:12px;padding:8px;cursor:pointer;border:1px solid var(--bd);font-size:12px;text-align:center;color:var(--mut)}.tile b{font-size:20px;display:block;color:var(--ink)}
+.tile.has{border-color:#34d399;background:#ecfdf5;color:#065f46}.tile.has b{color:#064e3b}.tile.err{border-color:#f87171;background:#fef2f2;color:#991b1b}.tile.err b{color:#7f1d1d}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:8px}.st div{background:var(--card)!important;color:var(--mut)!important;border:1px solid var(--bd);border-radius:12px;padding:12px 8px;text-align:center;font-size:12px;border-top:3px solid var(--pri)}.st b{display:block;font-size:22px;color:var(--ink)}
+.st div:nth-child(2){border-top-color:#0d9488}.st div:nth-child(3){border-top-color:#dc2626}.st div:nth-child(4){border-top-color:#059669}.st div:nth-child(5){border-top-color:#d97706}.st div:nth-child(6){border-top-color:#7c3aed}
+.ov{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th{background:var(--th);color:var(--mut);font-weight:700;white-space:nowrap}td,th{border-bottom:1px solid var(--bd);padding:7px;text-align:right}
+.chip{display:inline-block;border-radius:20px;padding:2px 10px;color:#fff;font-size:12px;white-space:nowrap}
+.c-سفر{background:#0e7490}.c-بيات{background:#4338ca}.c-حضور{background:#047857}.c-rest,.c-sick{background:#64748b}.c-casual{background:#b45309}.c-annual{background:#1d4ed8}.c-abs{background:#b91c1c}
+.al{padding:9px 12px;border-radius:10px;margin:5px 0;font-size:13px}.red{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}.amb{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sp{flex:1}a{color:var(--pri)}
+#pa{display:none}.slip table{width:100%;font-size:14px}.slip td,.slip th{border:1px solid #888;padding:6px;color:#000}.cell{text-align:center;padding:2px}
+#tt{display:none;position:fixed;bottom:84px;left:10px;right:10px;background:#0f172a;color:#fff;padding:10px;border-radius:12px;z-index:20;text-align:center}#tt button{background:#f59e0b}
+.bn{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding:6px 0 calc(6px + env(safe-area-inset-bottom));z-index:9;box-shadow:0 -2px 10px #0f172a14}.bn a{flex:1;text-align:center;font-size:11px;color:var(--mut);text-decoration:none}.bn a.on{color:var(--pri);font-weight:bold}.bn b{display:block}.bn .ic{width:22px;height:22px}
+.ph{display:none}.sy{font-size:12px;opacity:.85}
+@media print{.bar,.noprint,.bn,#tt{display:none!important}.ph{display:block}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #ccc}body.pp #app{display:none}body.pp #pa{display:block}.slip{page-break-after:always}}
+</style></head><body><div id="app"></div><div id="pa"></div><div id="tt"></div>
+<script>
+const $=s=>document.querySelector(s),LS='hr_v1',pad=n=>String(n).padStart(2,'0');
+const CFG=(window.HR_CONFIG&&window.HR_CONFIG.url)?window.HR_CONFIG:{url:'https://kuughhseuuinkdsjwtzb.supabase.co',key:'sb_publishable_o_H7X1cY3IF1WfJjV82w1w_4r2btm7e'},CLOUD=!!(CFG.url&&CFG.key&&window.supabase);
+let S;try{if(!CLOUD)S=JSON.parse(localStorage.getItem(LS))}catch(e){}
